@@ -36,3 +36,11 @@ return a * b;
 ## Experience
 *******
 Not yet :) But I strive for it.
+
+## Education
+*******
+* GBOU SPO PK №5
+* Code Basics
+     * HTML
+     * CSS
+     * JS (in progress)
