@@ -36,6 +36,7 @@ return a * b;
 ## Experience
 *******
 Not yet :) But I strive for it.
+This CV project is first experience.
 
 ## Education
 *******
