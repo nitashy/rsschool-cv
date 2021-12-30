@@ -1,10 +1,11 @@
 :root {
-    --light-link: #c3bf57;
-    --dark_link: ;
-    --light-bg: ;
-    --dark-bg: ;
-    --light-text: ;
-    --dark-text: ;
+    --light-link: rgba(195,191,87,1);
+    --dark_link: rgba(53,53,53,1);
+    --light-bg: linear-gradient(12deg, rgba(192,192,192,.5) 0%, rgb(235, 235, 235) 50%, rgba(192,192,192,.5) 110%);
+    --dark-bg: linear-gradient(12deg, rgba(31,31,31,1) 0%, rgba(39,39,39,1) 50%, rgba(45,45,45,1) 100%);
+    --light-text: rgba(235,235,235,1);
+    --dark-text: rgba(39,39,39,1);
+    --coloring: rgb(183, 177, 38)
 }
 
 /* Указываем box sizing */
@@ -23,6 +24,8 @@ ol[class] {
 /* Убираем внешние отступы */
 body,
 h1,
+h2,
+h3,
 p,
 ul[class],
 ol[class],
@@ -30,6 +33,10 @@ li {
   margin: 0;
   padding: 0;
 }
+
+html {
+    scroll-behavior: smooth; 
+  }
 
 /* Выставляем основные настройки по-умолчанию для body */
 body {
@@ -47,7 +54,16 @@ ol[class] {
 
 /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
 a {
-  text-decoration: none
+  text-decoration: none;
+}
+
+a:not([class]) {
+  color: var(--dark_link);
+  transition: color ease .4s
+}
+  
+a:not([class]):hover {
+  color: var(--coloring)
 }
 
 /* Упрощаем работу с изображениями */
@@ -60,6 +76,9 @@ img {
 article > * + * {
   margin-top: 1em;
 }
+
+*::-webkit-scrollbar {display:none;}
+* {scrollbar-width: none;}
 
 .header {
     display: block;
@@ -83,6 +102,7 @@ article > * + * {
     width: 100%;
     gap: 50px;
     background: #272727;
+    transition: all ease .8s;
 }
 
 .navigation_links li {
@@ -90,15 +110,29 @@ article > * + * {
     border-radius: 4px;
 }
 
+.navigation_links > li a {
+    transition: all ease .8s;
+}
+
+.navigation_links:hover > li a {
+    opacity: .5;
+    transition: all ease .8s;
+}
+  
+.navigation_links > li:hover a {
+    opacity: 1;
+    color: #ffffff;
+}
+
 .navigation_link {
     text-transform: uppercase;
-    font: 400 normal 13px/130% aleo;
+    font: 400 normal 14px/130% aleo;
     letter-spacing: .12em;
     display: inline-block;
     color: var(--light-link);
     position: relative;
     transition: filter .7s cubic-bezier(.64,.51,.55,1.16) 0s;
-  padding: 0 5px
+    padding: 0 5px
 }
 
 .navigation_link:hover {
@@ -122,4 +156,239 @@ article > * + * {
 .navigation_link:hover:before {
   transform: scaleX(1);
   transform-origin: left
+}
+
+.main {
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory;
+  will-change: scroll-snap-type;
+  position: relative;
+  overflow-y: scroll;
+  width: 100%;
+  height: calc(100vh - 50px);
+  margin: auto;
+  top: 50px;
+  left: 0;
+  scroll-behavior: smooth;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  width: 100%;
+  height: calc(100vh - 50px);
+  font: 400 13px/150% rubik;
+}
+
+#title_page, #skills {
+  background: var(--light-bg);
+  color: var(--dark-text);
+
+}
+
+#about_me, #experience {
+  background: var(--dark-bg);
+  color: var(--light-text);
+}
+
+.coloring {
+    color: var(--coloring);
+}
+  
+.title_page_block {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: 1000px;
+    justify-content: center;
+}
+  
+img.cv_photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    border: 10px solid var(--coloring)
+}
+  
+.main_title {
+    font: 700 60px Aleo;
+    margin-bottom: 10px;
+}
+  
+.subtitle {
+    font: 400 13px rubik;
+    text-transform: uppercase;
+    margin-bottom: 20px
+}
+
+.social_links_block {
+    margin-top: 20px
+}
+  
+.social_links {
+    display: flex;
+    gap: 25px
+}
+  
+i:not(.fas.fa-phone):before {
+    font-size: 27px
+}
+
+.social_links li {
+    display: flex;
+    align-items: center
+}
+
+.fas.fa-phone-square-alt {
+    margin-right: 10px;
+    line-height: 0
+}
+
+.fas.fa-phone-square-alt:before {
+    font-size: 24px;
+    color: var(--dark_link)
+}
+
+li.social_links_item:last-child {
+    font-size: 17px
+}
+
+.about_me_section {
+    width: 1000px;
+    font-size: 14px;
+    line-height: 160%
+}
+
+.title_second_lvl {
+    font: 700 14px Aleo;
+    text-transform: lowercase;
+    letter-spacing: .2em;
+    color: var(--coloring);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.title_second_lvl:after {
+    content: "";
+    background: currentColor;
+    height: 5px;
+    width: auto;
+    display: block;
+    flex: auto;
+    opacity: .8
+}
+
+.about_me_block + .about_me_block {
+    margin-top: 40px;
+}
+
+.skills_section {
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 160%
+}
+
+.skills_block {
+    width: 40%
+}
+
+.skills_block:last-child {
+    flex: auto;
+    margin-top: 20px
+}
+
+.skills_block pre {
+    background: var(--dark-bg);
+    color: var(--light-text);
+    border: 1px solid rgba(0,0,0,.15);
+    padding: 20px;
+    font: normal 12px Source Code Pro, sans-serif
+}
+
+.experience_section {
+    width: 1000px;
+    font-size: 14px;
+    line-height: 160%
+}
+
+.experience_section a {
+    color: var(--light-link)
+}
+
+.experience_section a:hover {
+    color: var(--light-text)
+}
+
+.footer {
+    display: block;
+    width: 100%;
+    position: fixed;
+    height: 40px;
+    z-index: 9;
+    bottom: 0;
+    left: 0;
+    background: #272727;
+    color: var(--light-text);
+    font: 400 13px Aleo;
+    letter-spacing: .15em;
+    text-transform: uppercase
+}
+
+.footer_section {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    height: 40px;
+    gap: 50px
+}
+
+.footer_item {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px
+}
+
+.footer_author {
+    color: var(--light-link);
+    position: relative;
+    display: inline-block;
+    transition: color .4s cubic-bezier(.64,.51,.55,1.16) 0s;
+}
+
+.footer_author:hover {
+    color: var(--light-text)
+}
+
+.footer_author:before {
+    content: "";
+    background: currentColor;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: transform .4s cubic-bezier(.64,.51,.55,1.16) 0s;
+    transform-origin: right;
+    transform: scaleX(0)
+}
+
+.footer_author:hover:before {
+    transform-origin: left;
+    transform: scaleX(1)
+}
+
+img.rslogo {
+    width: 60px;
+    height: auto;
+    filter: invert(100%)
 }
